@@ -8,15 +8,31 @@ void checkFunctions(char * command, char ** args){
 	//Local Variables
 	char cmdStr[100];
 
-	//VIM
+	//NANO Editor
+	if(strcmp("nano", command) == 0){
+		if(args[1] == NULL){
+
+		}else{
+			strcpy(cmdStr, command);
+			strcat(cmdStr, " ");
+			strcat(cmdStr, args[1]);
+			system(cmdStr);
+		}
+	}
+
+	//VIM Editor
 	if(strcmp("vim", command) == 0){
 		if(args[1] == NULL){
 			system("vim");
 		}else{
+			strcpy(cmdStr, command);
+			strcat(cmdStr, " ");
+			strcat(cmdStr, args[1]);
+			system(cmdStr);
 		}
 	}
 
-	//VI
+	//VI Editor
 	if(strcmp("vi", command) == 0){
 		system("vi");
 	}
