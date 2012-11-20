@@ -29,7 +29,9 @@ int main(){
     	fgets(buffer, BUFFER_SIZE, stdin);
     	parse_args(buffer, args, ARR_SIZE, &nargs);
     	
-    	checkFunctions(buffer);
+    	printf("%s\n", args[1] );
+    	//Checks for Built-in Functions
+    	checkFunctions(buffer, args);
    	}
 
 	return 0;
