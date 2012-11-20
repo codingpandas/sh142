@@ -32,6 +32,8 @@ int main(){
 		printf("Shell configuration is missing...\n");
 		printf("Creating shell configuration with defaults...\n");
 		sh142 = fopen(".sh142","w");
+		fprintf(sh142, "PATH=/home/usr/myname:/usr/bin\n");
+		fprintf(sh142, "DATA=/data/files:/home/usr/myname\n");
 		fclose(sh142);
 
 	}
