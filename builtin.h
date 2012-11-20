@@ -3,24 +3,10 @@ void motd(){
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
-void checkFunctions(char * command[100]){
-	if(strcmp("exit",command) == 0){
+void checkFunctions(char * nargs){
+	if(strcmp("exit",nargs) == 0){
 		printf("exiting...\n");
 		exit(0);
 	}
-	if(strcmp("cd",command) == 0){
-		changeDir(command);
-		return 1;
-	}
-}
 
-void changeDir(char * command[100]){
-	if(command[1] == NULL){
-		printf("HOME");
-		chdir(getenv("HOME"));
-	}else{
-		if(chdir(command[1] == -1)){
-			printf("No directory");
-		}
-	}
 }
