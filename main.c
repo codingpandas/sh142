@@ -24,6 +24,13 @@ int main(){
 
 	motd();
 
+	//Create the .sh142 with defaults, if it doesn't exist
+	if(access(".sh142", F_OK) != -1){
+		printf("Loading shell configuration file...\n");
+	}else{
+		printf("Shell configuration is missing...\n");
+	}
+
     while(1){
     	printf("$sh142 ->");
     	fgets(buffer, BUFFER_SIZE, stdin);
