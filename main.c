@@ -17,11 +17,12 @@ int main(){
 	//Local Variables
 	char buffer[BUFFER_SIZE];
 	char *args[ARR_SIZE];
-
     int *ret_status;
     size_t nargs;
     pid_t pid;
+    FILE *sh142;
 
+    //Message of the Day
 	motd();
 
 	//Create the .sh142 with defaults, if it doesn't exist
@@ -29,6 +30,10 @@ int main(){
 		printf("Loading shell configuration file...\n");
 	}else{
 		printf("Shell configuration is missing...\n");
+		printf("Creating shell configuration with defaults...\n");
+		sh142 = fopen(".sh142","w");
+		fclose(sh142);
+
 	}
 
     while(1){
