@@ -3,23 +3,43 @@ void motd(){
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
-void checkFunctions(char * command, char * args){
+void checkFunctions(char * command, char ** args){
 	
-	if(strcmp("cd", command) == 0){
-		printf("%s\n", &args[1]);
+	//Local Variables
+	char cmdStr[100];
+
+	//VIM
+	if(strcmp("vim", command) == 0){
 		if(args[1] == NULL){
-			printf("HOME dir");
+			system("vim");
+		}else{
+		}
+	}
+
+	//VI
+	if(strcmp("vi", command) == 0){
+		system("vi");
+	}
+
+	//Clear Screen
+	if(strcmp("clear", command) == 0){
+		system("clear");
+	}
+
+	//Change Directory
+	if(strcmp("cd", command) == 0){
+		if(args[1] == NULL){
 			chdir(getenv("HOME"));
 		}else{
 			if(chdir(args[1]) == -1){
-				printf("No such directory");
+				printf(" %s: No such directory\n", args[1]);
 			}
 		}
-		return 1;
 	}
 
+	//Exit
 	if(strcmp("exit", command) == 0){
-		printf("exiting...\n");
+		printf("Exiting Shell...\n");
 		exit(0);
 	}
 
