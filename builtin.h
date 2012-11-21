@@ -73,3 +73,17 @@ int checkFunctions(char * command, char ** args){
 
 	return 0;
 }
+
+int checkPATH(char * command, char ** args){
+	if(strstr("PATH=", command)==0){
+		printf("PATH change detected");
+		sh142 = fopen(".sh142","w");
+		fclose(sh142);
+	}
+
+	return 0;
+}
+
+int checkDATA(char * command, char ** args){
+	return 0;
+}

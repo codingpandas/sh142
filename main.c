@@ -47,8 +47,10 @@ int main(){
     	checkFunctions(buffer, args);
 
     	//Change PATH settings
+    	checkPATH(buffer, args);
 
     	//Change DATA settings
+    	checkDATA(buffer, args);
    	}
 
 	return 0;
