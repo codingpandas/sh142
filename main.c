@@ -20,7 +20,11 @@ int main(){
     int *ret_status;
     size_t nargs;
     pid_t pid;
-    FILE *sh142;
+
+    //Configuration FIle Variables
+    FILE *sh142, *sh142tmp;
+    char c;
+    int temp = 1;
 
     //Message of the Day
 	motd();
