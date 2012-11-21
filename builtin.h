@@ -3,7 +3,7 @@ void motd(){
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
-void checkFunctions(char * command, char ** args){
+int checkFunctions(char * command, char ** args){
 	
 	//Local Variables
 	char cmdStr[100];
@@ -18,6 +18,7 @@ void checkFunctions(char * command, char ** args){
 			strcat(cmdStr, args[1]);
 			system(cmdStr);
 		}
+		return 0;
 	}
 
 	//VIM Editor
@@ -30,16 +31,26 @@ void checkFunctions(char * command, char ** args){
 			strcat(cmdStr, args[1]);
 			system(cmdStr);
 		}
+		return 0;
 	}
 
 	//VI Editor
 	if(strcmp("vi", command) == 0){
-		system("vi");
+		if(args[1] == NULL){
+			system("vi");
+		}else{
+			strcpy(cmdStr, command);
+			strcat(cmdStr, " ");
+			strcat(cmdStr, args[1]);
+			system(cmdStr);
+		}
+		return 0;
 	}
 
 	//Clear Screen
 	if(strcmp("clear", command) == 0){
 		system("clear");
+		return 0;
 	}
 
 	//Change Directory
@@ -51,6 +62,7 @@ void checkFunctions(char * command, char ** args){
 				printf(" %s: No such directory\n", args[1]);
 			}
 		}
+		return 0;
 	}
 
 	//Exit
@@ -59,4 +71,5 @@ void checkFunctions(char * command, char ** args){
 		exit(0);
 	}
 
+	return 0;
 }

@@ -45,6 +45,10 @@ int main(){
     	
     	//Checks for Built-in Functions
     	checkFunctions(buffer, args);
+
+    	//Change PATH settings
+
+    	//Change DATA settings
    	}
 
 	return 0;
