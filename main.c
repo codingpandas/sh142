@@ -6,6 +6,8 @@
 #include <sys/types.h>
 #include "builtin.h"
 #include "parser.h"
+#include "hwutil.h"
+#include "io.h"
 #define BUFFER_SIZE 1<<16
 #define ARR_SIZE 1<<16
 

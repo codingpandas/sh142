@@ -3,6 +3,10 @@ void motd(){
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
+void loadDefaults(){
+
+}
+
 int checkFunctions(char * command, char ** args){
 	
 	//Local Variables
@@ -75,24 +79,12 @@ int checkFunctions(char * command, char ** args){
 }
 
 int checkPATH(char * command, char ** args){
+	FILE *sh142;
+	
 	if(strstr("PATH=", command)==0){
 		printf("PATH change detected");
 		sh142 = fopen(".sh142","r");
-		rewind(sh142);
-		sh142tmp = fopen(".sh142tmp","w");
-		c = getc(sh142);
-		while (c != EOF) {
-			if (c == ' ') {
-			temp++;
-			}
-			if (temp != 1){
-				putc(c, sh142tmp);
-			}else{
-				while ((c = getc(sh142)) != ' ') {
-
-				}
-
-		}
+		
 
 		fclose(sh142);
 	}

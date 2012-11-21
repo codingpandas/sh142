@@ -1,0 +1,7 @@
+void input(){
+
+}
+
+void output(){
+
+}
