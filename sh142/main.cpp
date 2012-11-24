@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>

@@ -8,15 +8,7 @@
 
 #ifndef sh142_builtin_h
 #define sh142_builtin_h
-#include <iostream>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/types.h>
-#define BUFFER_SIZE 1<<16
-#define ARR_SIZE 1<<16
+
 using namespace std;
 
 void motd(){
@@ -66,14 +58,25 @@ int checkFunctions(string command, char ** args){
 }
 
 int checkPATH(string command, char ** args){
-    FILE *sh142, *sh142tmp;
+    ofstream sh142, sh142tmp;
 	int temp = 1;
 	char c;
     string pathCMD("PATH=");
     
     if(command.find(pathCMD) == 0){
 		printf("PATH change detected\n");
-		sh142 = fopen(".sh142","r");
+        sh142.open(".sh142");
+        char output[100];
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                sh142 >> output;
+                cout << output;
+            }
+        }
+        
+        sh142.close();
+    }
+		/*sh142 = fopen(".sh142","r");
 		//c = getc(sh142);
 		//prints settings from the config file
 		do {
@@ -107,8 +110,7 @@ int checkPATH(string command, char ** args){
 		}
         
 		fclose(sh142);
-		fclose(sh142tmp);
-	}
+		fclose(sh142tmp);*/
     
 	return 0;
 }
