@@ -12,46 +12,6 @@ int checkFunctions(char * command, char ** args){
 	//Local Variables
 	char cmdStr[100];
 
-	//NANO Editor
-	/*if(strcmp("nano", command) == 0){
-		if(args[1] == NULL){
-
-		}else{
-			strcpy(cmdStr, command);
-			strcat(cmdStr, " ");
-			strcat(cmdStr, args[1]);
-			system(cmdStr);
-		}
-		return 0;
-	}*/
-
-	//VIM Editor
-	/*if(strcmp("vim", command) == 0){
-		command = NULL;
-		if(args[1] == NULL){
-			system("vim");
-		}else{
-			strcpy(cmdStr, command);
-			strcat(cmdStr, " ");
-			strcat(cmdStr, args[1]);
-			system(cmdStr);
-		}
-		return 0;
-	}*/
-
-	//VI Editor
-	/*if(strcmp("vi", command) == 0){
-		if(args[1] == NULL){
-			system("vi");
-		}else{
-			strcpy(cmdStr, command);
-			strcat(cmdStr, " ");
-			strcat(cmdStr, args[1]);
-			system(cmdStr);
-		}
-		return 0;
-	}*/
-
 	//Clear Screen
 	if(strcmp("clear", command) == 0){
 		system("clear");
@@ -86,9 +46,21 @@ int checkPATH(char * command, char ** args){
 
 	if(strstr("PATH=", command)==0){
 		printf("PATH change detected\n");
-		sh142 = fopen(".sh142","r");
-	
+		sh142 = fopen(".sh142","r");		
+		c = getc(sh142);	
+		//prints settings from the config file
+		while (c != EOF){
+			printf("%c", c);
+			c = getc(sh142);
+		}
+		//revert to file start point
+		rewind(sh142);
+			
+		sh142tmp = fopen(".sh142tmp", "w");
+		c = getc(sh142tmp);
+
 		fclose(sh142);
+		fclose(sh142tmp);
 	}
 
 	return 0;
