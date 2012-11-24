@@ -58,6 +58,27 @@ int checkPATH(char * command, char ** args){
 			
 		sh142tmp = fopen(".sh142tmp", "w");
 		c = getc(sh142tmp);
+		while(c != EOF){
+			if(c == ' '){
+				temp++;
+			}
+		}
+
+		if(temp != 1){
+			putc(c, sh142tmp);
+		}else{
+			while((c = getc(sh142)) != ' '){
+			}
+			printf("Enter new text");
+			fflush(stdin);
+			putc(' ', sh142tmp);
+			while((c = getchar()) != ' '){
+				putc(c, sh142tmp);
+				fputs(" ", sh142tmp);
+				temp++;
+			}
+			c = getc(sh142);
+		}
 
 		fclose(sh142);
 		fclose(sh142tmp);
