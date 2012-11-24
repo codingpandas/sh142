@@ -66,11 +66,12 @@ int checkFunctions(string command, char ** args){
 }
 
 int checkPATH(string command, char ** args){
-	FILE *sh142, *sh142tmp;
+    FILE *sh142, *sh142tmp;
 	int temp = 1;
 	char c;
+    string pathCMD("PATH=");
     
-	/*if(strstr("PATH=", command)==0){
+    if(command.find(pathCMD) == 0){
 		printf("PATH change detected\n");
 		sh142 = fopen(".sh142","r");
 		//c = getc(sh142);
@@ -106,8 +107,8 @@ int checkPATH(string command, char ** args){
 		}
         
 		fclose(sh142);
-		//fclose(sh142tmp);
-	}*/
+		fclose(sh142tmp);
+	}
     
 	return 0;
 }
