@@ -47,21 +47,28 @@ int checkPATH(char * command, char ** args){
 	if(strstr("PATH=", command)==0){
 		printf("PATH change detected\n");
 		sh142 = fopen(".sh142","r");		
-		c = getc(sh142);	
+		//c = getc(sh142);	
 		//prints settings from the config file
-		while (c != EOF){
+		do {
+			c = fgetc(sh142);
+			printf("%c", c);
+		} while(c != EOF);
+
+
+		/*while ((d = fgetc(sh142))!= EOF){
 			printf("%c", c);
 			c = getc(sh142);
 		}
+
 		//revert to file start point
 		rewind(sh142);
-			
+				
 		sh142tmp = fopen(".sh142tmp", "w");
 		c = getc(sh142tmp);
 		while(c != EOF){
-			if(c == ' '){
-				temp++;
-			}
+			printf("loop2");
+			if(c == ' '){}
+			temp++;
 		}
 
 		if(temp != 1){
@@ -78,10 +85,10 @@ int checkPATH(char * command, char ** args){
 				temp++;
 			}
 			c = getc(sh142);
-		}
+		}*/
 
 		fclose(sh142);
-		fclose(sh142tmp);
+		//fclose(sh142tmp);
 	}
 
 	return 0;
