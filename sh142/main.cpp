@@ -13,6 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <algorithm>
 #include <sys/types.h>
 #include "builtin.h"
 #include "parser.h"

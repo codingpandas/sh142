@@ -58,59 +58,36 @@ int checkFunctions(string command, char ** args){
 }
 
 int checkPATH(string command, char ** args){
-    ofstream sh142, sh142tmp;
 	int temp = 1;
 	char c;
     string pathCMD("PATH=");
     
     if(command.find(pathCMD) == 0){
-		printf("PATH change detected\n");
-        sh142.open(".sh142");
-        char output[100];
+		printf("ENVIRONMENT PATH VARIABLE CHANGE DETECTED!\n\n");
+        
+        ofstream sh142tmp;
+        sh142tmp.open(".sh142tmp");
+        sh142tmp << command << endl;
+        
+        ifstream sh142 (".sh142");
+        bool first = true;
+        string output;
         if(sh142.is_open()){
             while(!sh142.eof()){
-                sh142 >> output;
-                cout << output;
+                if(first){
+                    getline(sh142,output);
+                    first = false;
+                }else{
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                }
             }
         }
-        
+        sh142tmp.close();
         sh142.close();
+        remove(".sh142");
+        rename(".sh142tmp", ".sh142");
     }
-		/*sh142 = fopen(".sh142","r");
-		//c = getc(sh142);
-		//prints settings from the config file
-		do {
-			c = fgetc(sh142);
-			printf("%c", c);
-		} while(c != EOF);
-		
-		printf("test");
-		sh142tmp = fopen(".sh142tmp", "w");
-		do{
-			c = fgetc(sh142tmp);
-			if(c == ' '){}
-			temp++;
-            
-		}while (c != EOF);
-        
-		if(temp != 1){
-			putc(c, sh142tmp);
-		}else{
-			while((c = getc(sh142)) != ' '){
-			}
-			printf("Enter new text");
-			fflush(stdin);
-			putc(' ', sh142tmp);
-			while((c = getchar()) != ' '){
-				putc(c, sh142tmp);
-				fputs(" ", sh142tmp);
-				temp++;
-			}
-			c = getc(sh142);
-		}
-        
-		fclose(sh142);
-		fclose(sh142tmp);*/
     
 	return 0;
 }
