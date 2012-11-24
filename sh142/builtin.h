@@ -8,6 +8,16 @@
 
 #ifndef sh142_builtin_h
 #define sh142_builtin_h
+#include <iostream>
+#include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#define BUFFER_SIZE 1<<16
+#define ARR_SIZE 1<<16
+using namespace std;
 
 void motd(){
 	printf("\tComputer Engineering @ San Jose State University\n");
@@ -18,19 +28,24 @@ void loadDefaults(){
     
 }
 
-int checkFunctions(char * command, char ** args){
+int checkFunctions(string command, char ** args){
 	
 	//Local Variables
-	char cmdStr[100];
+	string cmdStr;
+    
+    //Predefine commands
+    string clear("clear");
+    string cd("cd");
+    string exit("exit");
     
 	//Clear Screen
-	if(strcmp("clear", command) == 0){
+    if(clear.compare(command) == 0){
 		system("clear");
 		return 0;
 	}
     
 	//Change Directory
-	if(strcmp("cd", command) == 0){
+    if(cd.compare(command) == 0){
 		if(args[1] == NULL){
 			chdir(getenv("HOME"));
 		}else{
@@ -42,20 +57,20 @@ int checkFunctions(char * command, char ** args){
 	}
     
 	//Exit
-	if(strcmp("exit", command) == 0){
+	if(exit.compare(command) == 0){
 		printf("Exiting Shell...\n");
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
     
 	return 0;
 }
 
-int checkPATH(char * command, char ** args){
+int checkPATH(string command, char ** args){
 	FILE *sh142, *sh142tmp;
 	int temp = 1;
 	char c;
     
-	if(strstr("PATH=", command)==0){
+	/*if(strstr("PATH=", command)==0){
 		printf("PATH change detected\n");
 		sh142 = fopen(".sh142","r");
 		//c = getc(sh142);
@@ -92,7 +107,7 @@ int checkPATH(char * command, char ** args){
         
 		fclose(sh142);
 		//fclose(sh142tmp);
-	}
+	}*/
     
 	return 0;
 }

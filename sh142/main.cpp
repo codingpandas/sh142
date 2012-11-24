@@ -19,9 +19,10 @@
 #include "io.h"
 #define BUFFER_SIZE 1<<16
 #define ARR_SIZE 1<<16
+using namespace std;
 
 //Global Variables
-char cmd[100];
+string cmd;
 
 int main(){
     
@@ -50,7 +51,6 @@ int main(){
 		fprintf(sh142, "PATH=/home/usr/myname:/usr/bin\n");
 		fprintf(sh142, "DATA=/data/files:/home/usr/myname\n");
 		fclose(sh142);
-        
 	}
     
     while(1){
