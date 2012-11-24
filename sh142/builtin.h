@@ -58,8 +58,6 @@ int checkFunctions(string command, char ** args){
 }
 
 int checkPATH(string command, char ** args){
-	int temp = 1;
-	char c;
     string pathCMD("PATH=");
     
     if(command.find(pathCMD) == 0){
@@ -88,11 +86,16 @@ int checkPATH(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
     }
-    
 	return 0;
 }
 
-int checkDATA(char * command, char ** args){
+int checkDATA(string command, char ** args){
+    string pathCMD("DATA=");
+    
+    if(command.find(pathCMD) == 0){
+		printf("ENVIRONMENT DATA VARIABLE CHANGE DETECTED!\n\n");
+        
+    }
 	return 0;
 }
 
