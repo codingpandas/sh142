@@ -27,6 +27,26 @@ using namespace std;
 //Global Variables
 string cmd;
 
+//Environmental Variables
+string pathVar;
+string dataVar;
+
+//Check Saved Environment Variables
+int checkenvVar(string command, char ** args){
+    string pathCheck("PATH");
+    string dataCheck("DATA");
+    
+    if(pathCheck.compare(command) == 0){
+        cout << pathVar << endl;
+    }
+    
+    if(dataCheck.compare(command) == 0){
+        cout << dataVar << endl;
+    }
+    
+    return 0;
+}
+
 int main(){
     
 	//Local Variables
@@ -46,7 +66,32 @@ int main(){
     
 	//Create the .sh142 with defaults, if it doesn't exist
 	if(access(".sh142", F_OK) != -1){
-		printf("Loading shell configuration file...\n");
+        printf("Loading shell configuration file...\n");
+        
+        ifstream sh142 (".sh142");
+        bool path = true;
+        bool data = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(path){
+                    getline(sh142,output);
+                    pathVar = output;
+                    path = false;
+                    data = true;
+                }
+                if(data){
+                    getline(sh142,output);
+                    dataVar = output;
+                    data = false;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        sh142.close();
+        
 	}else{
 		printf("Shell configuration is missing...\n");
 		printf("Creating shell configuration with defaults...\n");
@@ -71,7 +116,10 @@ int main(){
     	checkDATA(buffer, args);
         
         //Variable Set/Unset
-        variableSetter(buffer, args);
+        //variableSetter(buffer, args);
+        
+        //Check Environment Variables
+        checkenvVar(buffer, args);
    	}
     
 	return 0;
