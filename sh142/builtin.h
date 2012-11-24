@@ -34,18 +34,18 @@ int checkFunctions(string command, char ** args){
 	string cmdStr;
     
     //Predefine commands
-    string clear("clear");
-    string cd("cd");
-    string exit("exit");
+    string clearCMD("clear");
+    string cdCMD("cd");
+    string exitCMD("exit");
     
 	//Clear Screen
-    if(clear.compare(command) == 0){
+    if(clearCMD.compare(command) == 0){
 		system("clear");
 		return 0;
 	}
     
 	//Change Directory
-    if(cd.compare(command) == 0){
+    if(cdCMD.compare(command) == 0){
 		if(args[1] == NULL){
 			chdir(getenv("HOME"));
 		}else{
@@ -57,7 +57,7 @@ int checkFunctions(string command, char ** args){
 	}
     
 	//Exit
-	if(exit.compare(command) == 0){
+	if(exitCMD.compare(command) == 0){
 		printf("Exiting Shell...\n");
 		exit(EXIT_SUCCESS);
 	}
