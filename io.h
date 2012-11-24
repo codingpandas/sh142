@@ -1,7 +1,0 @@
-void input(){
-
-}
-
-void output(){
-
-}

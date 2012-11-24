@@ -1,4 +1,15 @@
-void parse_args(char *buffer, char** args, 
+//
+//  parser.h
+//  sh142
+//
+//  Created by Alben Cheung on 11/24/12.
+//  Copyright (c) 2012 Alben Cheung. All rights reserved.
+//
+
+#ifndef sh142_parser_h
+#define sh142_parser_h
+
+void parse_args(char *buffer, char** args,
                 size_t args_size, size_t *nargs)
 {
     char *buf_args[args_size]; /* You need C99 */
@@ -7,7 +18,7 @@ void parse_args(char *buffer, char** args,
     size_t i, j;
     
     wbuf=buffer;
-    buf_args[0]=buffer; 
+    buf_args[0]=buffer;
     args[0] =buffer;
     
     for(cp=buf_args; (*cp=strsep(&wbuf, " \n\t")) != NULL ;){
@@ -23,3 +34,6 @@ void parse_args(char *buffer, char** args,
     *nargs=j;
     args[j]=NULL;
 }
+
+
+#endif
