@@ -53,23 +53,15 @@ int checkPATH(char * command, char ** args){
 			c = fgetc(sh142);
 			printf("%c", c);
 		} while(c != EOF);
-
-
-		/*while ((d = fgetc(sh142))!= EOF){
-			printf("%c", c);
-			c = getc(sh142);
-		}
-
-		//revert to file start point
-		rewind(sh142);
-				
+		
+		printf("test");		
 		sh142tmp = fopen(".sh142tmp", "w");
-		c = getc(sh142tmp);
-		while(c != EOF){
-			printf("loop2");
+		do{
+			c = fgetc(sh142tmp);
 			if(c == ' '){}
 			temp++;
-		}
+
+		}while (c != EOF);
 
 		if(temp != 1){
 			putc(c, sh142tmp);
@@ -85,7 +77,7 @@ int checkPATH(char * command, char ** args){
 				temp++;
 			}
 			c = getc(sh142);
-		}*/
+		}
 
 		fclose(sh142);
 		//fclose(sh142tmp);
