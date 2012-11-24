@@ -33,14 +33,24 @@ string dataVar;
 
 //Check Saved Environment Variables
 int checkenvVar(string command, char ** args){
-    string pathCheck("PATH");
-    string dataCheck("DATA");
+    string pathCheckUpper("PATH");
+    string dataCheckUpper("DATA");
+    string pathCheckLower("path");
+    string dataCheckLower("data");
     
-    if(pathCheck.compare(command) == 0){
+    if(pathCheckUpper.compare(command) == 0){
         cout << pathVar << endl;
     }
     
-    if(dataCheck.compare(command) == 0){
+    if(dataCheckUpper.compare(command) == 0){
+        cout << dataVar << endl;
+    }
+    
+    if(pathCheckLower.compare(command) == 0){
+        cout << pathVar << endl;
+    }
+    
+    if(dataCheckLower.compare(command) == 0){
         cout << dataVar << endl;
     }
     
