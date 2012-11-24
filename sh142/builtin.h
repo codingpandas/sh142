@@ -99,4 +99,13 @@ int checkDATA(string command, char ** args){
 	return 0;
 }
 
+int variableSetter(string command, char ** args){
+    regex cmdREGEX("[a-z]+\\(*)=[a-z]+\\");
+    if(regex_match(command, cmdREGEX)){
+        cout << "variable detected";
+    }else{
+    }
+    return 0;
+}
+
 #endif

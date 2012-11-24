@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <algorithm>
 #include <sys/types.h>
+#include <regex.h>
 #include "builtin.h"
 #include "parser.h"
 #include "hwutil.h"
@@ -68,6 +69,9 @@ int main(){
         
     	//Change DATA settings
     	checkDATA(buffer, args);
+        
+        //Variable Set/Unset
+        variableSetter(buffer, args);
    	}
     
 	return 0;
