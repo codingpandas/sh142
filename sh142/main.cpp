@@ -39,18 +39,110 @@ int checkenvVar(string command, char ** args){
     string dataCheckLower("data");
     
     if(pathCheckUpper.compare(command) == 0){
+        ifstream sh142 (".sh142");
+        bool path = true;
+        bool data = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(path){
+                    getline(sh142,output);
+                    pathVar = output;
+                    path = false;
+                    data = true;
+                }
+                if(data){
+                    getline(sh142,output);
+                    dataVar = output;
+                    data = false;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        sh142.close();
         cout << pathVar << endl;
     }
     
     if(dataCheckUpper.compare(command) == 0){
+        ifstream sh142 (".sh142");
+        bool path = true;
+        bool data = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(path){
+                    getline(sh142,output);
+                    pathVar = output;
+                    path = false;
+                    data = true;
+                }
+                if(data){
+                    getline(sh142,output);
+                    dataVar = output;
+                    data = false;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        sh142.close();
         cout << dataVar << endl;
     }
     
     if(pathCheckLower.compare(command) == 0){
+        ifstream sh142 (".sh142");
+        bool path = true;
+        bool data = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(path){
+                    getline(sh142,output);
+                    pathVar = output;
+                    path = false;
+                    data = true;
+                }
+                if(data){
+                    getline(sh142,output);
+                    dataVar = output;
+                    data = false;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        sh142.close();
         cout << pathVar << endl;
     }
     
     if(dataCheckLower.compare(command) == 0){
+        ifstream sh142 (".sh142");
+        bool path = true;
+        bool data = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(path){
+                    getline(sh142,output);
+                    pathVar = output;
+                    path = false;
+                    data = true;
+                }
+                if(data){
+                    getline(sh142,output);
+                    dataVar = output;
+                    data = false;
+                }
+                else{
+                    break;
+                }
+            }
+        }
+        sh142.close();
         cout << dataVar << endl;
     }
     
