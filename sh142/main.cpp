@@ -218,8 +218,11 @@ int main(){
     	//Change DATA settings
     	checkDATA(buffer, args);
         
-        //Variable Set/Unset
+        //Variable Setter
         variableSetter(buffer, args);
+        
+        //Variable Unsetter
+        variableUnsetter(buffer, args);
         
         //Check Environment Variables
         checkenvVar(buffer, args);
