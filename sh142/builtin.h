@@ -77,7 +77,7 @@ int checkPATH(string command, char ** args){
                     first = false;
                 }else{
                     getline(sh142,output);
-                    sh142tmp << output << endl;
+                    sh142tmp << output;
                 }
             }
         }
@@ -117,7 +117,7 @@ int checkDATA(string command, char ** args){
                 }
                 else{
                     getline(sh142,output);
-                    sh142tmp << output << endl;
+                    sh142tmp << output;
                 }
             }
         }
@@ -130,13 +130,20 @@ int checkDATA(string command, char ** args){
 	return 0;
 }
 
-/*int variableSetter(string command, char ** args){
-    regex cmdREGEX("[a-z]+\\(*)=[a-z]+\\");
-    if(regex_match(command, cmdREGEX)){
-        cout << "variable detected";
-    }else{
+int variableSetter(string command, char ** args){
+    string equalsVar("=");
+    size_t found;
+    found = command.find(equalsVar);
+    
+    if(found!=string::npos){
+        ofstream sh142;
+        sh142.open(".sh142",ios::app);
+        cout << command;
+        sh142 << command << endl;
+        sh142.close();
     }
+    
     return 0;
-}*/
+}
 
 #endif

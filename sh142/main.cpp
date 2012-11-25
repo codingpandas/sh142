@@ -219,7 +219,7 @@ int main(){
     	checkDATA(buffer, args);
         
         //Variable Set/Unset
-        //variableSetter(buffer, args);
+        variableSetter(buffer, args);
         
         //Check Environment Variables
         checkenvVar(buffer, args);
