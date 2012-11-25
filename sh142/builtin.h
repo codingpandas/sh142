@@ -30,6 +30,8 @@ int checkFunctions(string command, char ** args){
     string cdCMD("cd");
     string exitCMD("exit");
     
+    //List Files in Directory
+    
 	//Clear Screen
     if(clearCMD.compare(command) == 0){
 		system("clear");
@@ -131,16 +133,53 @@ int checkDATA(string command, char ** args){
 }
 
 int variableSetter(string command, char ** args){
+    string varSet("setvar");
     string equalsVar("=");
     size_t found;
     found = command.find(equalsVar);
+    if(command.find(varSet) == 0){
+        //if(found!=string::npos){
+            ofstream sh142;
+            sh142.open(".sh142",ios::app);
+            cout << args[1];
+            sh142 << args[1] << endl;
+            sh142.close();
+        //}
+    }
     
-    if(found!=string::npos){
-        ofstream sh142;
-        sh142.open(".sh142",ios::app);
-        cout << command;
-        sh142 << command << endl;
+    return 0;
+}
+
+int variableUnsetter(string command, char ** args){
+    string varUnset("unsetvar");
+    
+    if(command.find(varUnset) == 0){
+        ofstream sh142tmp;
+        sh142tmp.open(".sh142tmp");
+        
+        ifstream sh142 (".sh142");
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                cout << args[1];
+                if (output != args[1]) {
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                }
+                if(output == args[1]){
+                    cout << args[1];
+                }
+                else{
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                    break;
+                }
+            }
+        }
+        sh142tmp.close();
         sh142.close();
+        //remove(".sh142");
+        //rename(".sh142tmp", ".sh142");
     }
     
     return 0;
