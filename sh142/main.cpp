@@ -149,6 +149,7 @@ int checkenvVar(string command, char ** args){
     return 0;
 }
 
+//Main Function
 int main(){
     
 	//Local Variables
