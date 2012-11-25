@@ -23,7 +23,7 @@ void loadDefaults(){
 int checkFunctions(string command, char ** args){
 	
 	//Local Variables
-	string cmdStr;
+	char cmdStr[100];
     
     //Predefine commands
     string clearCMD("clear");
@@ -33,7 +33,14 @@ int checkFunctions(string command, char ** args){
     
     //List Files in Directory
     if(lsCMD.compare(command) == 0){
-   		system("ls");
+   		if(args[1] == NULL){
+            system("ls");
+        }
+        if(args[1] != NULL){
+            strcpy(cmdStr, "ls ");
+            strcat(cmdStr, args[1]);
+            system(cmdStr);
+        }
 		return 0;
     }    
 
