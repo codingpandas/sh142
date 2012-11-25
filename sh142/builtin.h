@@ -161,25 +161,19 @@ int variableUnsetter(string command, char ** args){
         string output;
         if(sh142.is_open()){
             while(!sh142.eof()){
-                cout << args[1];
-                if (output != args[1]) {
-                    getline(sh142,output);
-                    sh142tmp << output << endl;
-                }
+                getline(sh142,output);
                 if(output == args[1]){
-                    cout << args[1];
+                    
                 }
-                else{
-                    getline(sh142,output);
+                if(output != args[1]){
                     sh142tmp << output << endl;
-                    break;
                 }
             }
         }
         sh142tmp.close();
         sh142.close();
-        //remove(".sh142");
-        //rename(".sh142tmp", ".sh142");
+        remove(".sh142");
+        rename(".sh142tmp", ".sh142");
     }
     
     return 0;

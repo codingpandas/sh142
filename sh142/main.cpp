@@ -159,10 +159,8 @@ int main(){
     size_t nargs;
     pid_t pid;
     
-    //Configuration FIle Variables
-    FILE *sh142, *sh142tmp;
-    char c;
-    int temp = 1;
+    //Configuration File Variables
+    FILE *sh142;
     
     //Message of the Day
 	motd();
