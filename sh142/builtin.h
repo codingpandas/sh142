@@ -29,9 +29,15 @@ int checkFunctions(string command, char ** args){
     string clearCMD("clear");
     string cdCMD("cd");
     string exitCMD("exit");
+    string lsCMD("ls");
     
     //List Files in Directory
-    
+    if(lsCMD.compare(command) == 0){
+   		system("ls");
+		return 0;
+    }    
+
+
 	//Clear Screen
     if(clearCMD.compare(command) == 0){
 		system("clear");
