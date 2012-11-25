@@ -112,7 +112,6 @@ int checkDATA(string command, char ** args){
                 }
                 if (second) {
                     getline(sh142, output);
-                    cout << command << endl;
                     sh142tmp << command << endl;
                     second = false;
                 }
