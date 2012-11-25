@@ -9,11 +9,11 @@
 #ifndef sh142_hwutil_h
 #define sh142_hwutil_h
 
-void setCPU(){
-    
+void setCPU(string cpu){
+	    
 }
 
-void setMEM(){
+void setMEM(string mem){
     
 }
 
