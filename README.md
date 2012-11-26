@@ -13,11 +13,11 @@ Done
 - Load environmental variables from file after setting them and refresh the environment
 - User should be able to dynamically set a persistent data file path: DATA=/data/files:/home/usr/myname
 - User should be able to check the exit status of the last few commands by executing $?1, $?2, …
+- Shell must connect to remote shells and be able to support local and remote execution.
 
 Partially Done
 ====
 - User should be able to set and unset shell variables and use them in command lines: MYPATH=/mydir Cmd1 $MYPATH/file
-- Shell must connect to remote shells and be able to support local and remote execution.
 - User should be able to iterate the execution of one or more commands as follows:For (n=0;n < MAX; n++) Com1;Com2;…forend
 
 To Do List
