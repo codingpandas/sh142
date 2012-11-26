@@ -87,7 +87,7 @@ int checkExitStatus(string command, char ** args){
         retStat = 0;
         return 0;
     }else{
-        cout << "Please use a valid format: $?<number>" << endl;
+        //cout << "Please use a valid format: $?<number>" << endl;
     }
     
     return 0;
@@ -96,13 +96,16 @@ int checkExitStatus(string command, char ** args){
 int checkFunctions(string command, char ** args){
 	
 	//Local Variables
-	char cmdStr[100];
+	char cmdStr[500];
     
     //Predefine commands
     string clearCMD("clear");
     string cdCMD("cd");
     string exitCMD("exit");
     string lsCMD("ls");
+    string sshCMD("ssh");
+    string scpCMD("scp");
+    string screenCMD("screen");
     
     //List Files in Directory
     if(lsCMD.compare(command) == 0){
@@ -119,8 +122,66 @@ int checkFunctions(string command, char ** args){
             returnStatus();
         }
 		return 0;
-    }    
-
+    }
+    
+    //Secure Shell Program
+    if(sshCMD.compare(command) == 0){
+        if (args[1] != NULL) {
+            strcpy(cmdStr, "ssh ");
+            strcat(cmdStr, args[1]);
+            system(cmdStr);
+            retStat = 0;
+        }
+        if(args[1] != NULL && args[2] != NULL && args[3] != NULL){
+            strcpy(cmdStr, "ssh ");
+            strcat(cmdStr, args[1]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[2]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[3]);
+            system(cmdStr);
+            retStat = 0;
+        }
+        else{
+            system("ssh");
+            retStat = 100;
+        }
+    }
+    
+    //Secure Copy Program
+    if(scpCMD.compare(command) == 0){
+        if (args[1] != NULL && args[2] != NULL) {
+            strcpy(cmdStr, "scp ");
+            strcat(cmdStr, args[1]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[2]);
+            system(cmdStr);
+            retStat = 0;
+        }
+        if(args[1] != NULL && args[2] != NULL && args[3] != NULL && args[4] != NULL){
+            strcpy(cmdStr, "scp ");
+            strcat(cmdStr, args[1]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[2]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[3]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[4]);
+            system(cmdStr);
+            retStat = 0;
+        }
+        else{
+            system("scp");
+            retStat = 100;
+        }
+    }
+    
+    //Screen Program
+    if(screenCMD.compare(command) == 0){
+        system("screen");
+        retStat = 0;
+        return 0;
+    }
 
 	//Clear Screen
     if(clearCMD.compare(command) == 0){
