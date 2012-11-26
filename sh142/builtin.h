@@ -86,6 +86,8 @@ int checkExitStatus(string command, char ** args){
         
         retStat = 0;
         return 0;
+    }else{
+        cout << "Please use a valid format: $?<number>" << endl;
     }
     
     return 0;
