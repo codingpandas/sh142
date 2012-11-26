@@ -4,8 +4,8 @@ CMPE 142 Unix Shell
 
 Known Bugs
 =====
--Change Directory (cd) is not fully working
--Error Handling missing for certain commands
+- Change Directory (cd) is not fully working
+- Error Handling missing for certain commands
 
 Done
 =====
