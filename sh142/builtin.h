@@ -11,6 +11,9 @@
 
 using namespace std;
 
+//Global Return Status Variables
+int retStat = -1;
+
 void motd(){
 	printf("\tComputer Engineering @ San Jose State University\n");
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
@@ -35,11 +38,13 @@ int checkFunctions(string command, char ** args){
     if(lsCMD.compare(command) == 0){
    		if(args[1] == NULL){
             system("ls");
+            retStat = 0;
         }
         if(args[1] != NULL){
             strcpy(cmdStr, "ls ");
             strcat(cmdStr, args[1]);
             system(cmdStr);
+            retStat = 0;
         }
 		return 0;
     }    
@@ -48,6 +53,7 @@ int checkFunctions(string command, char ** args){
 	//Clear Screen
     if(clearCMD.compare(command) == 0){
 		system("clear");
+        retStat = 0;
 		return 0;
 	}
     
@@ -55,9 +61,12 @@ int checkFunctions(string command, char ** args){
     if(cdCMD.compare(command) == 0){
 		if(args[1] == NULL){
 			chdir(getenv("HOME"));
+            retStat = 0;
 		}else{
 			if(chdir(args[1]) == -1){
 				printf(" %s: No such directory\n", args[1]);
+                retStat = -1;
+                return -1;
 			}
 		}
 		return 0;
@@ -66,6 +75,7 @@ int checkFunctions(string command, char ** args){
 	//Exit
 	if(exitCMD.compare(command) == 0){
 		printf("Exiting Shell...\n");
+        retStat = 0;
 		exit(EXIT_SUCCESS);
 	}
     
@@ -100,6 +110,7 @@ int checkPATH(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+        retStat = 0;
     }
 	return 0;
 }
@@ -140,6 +151,7 @@ int checkDATA(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+        retStat = 0;
         
     }
 	return 0;
@@ -158,6 +170,7 @@ int variableSetter(string command, char ** args){
             sh142 << args[1] << endl;
             sh142.close();
         //}
+        retStat = 0;
     }
     
     return 0;
@@ -187,8 +200,14 @@ int variableUnsetter(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+        retStat = 0;
     }
     
+    return 0;
+}
+
+int checkExitStatus(string command, char ** args){
+
     return 0;
 }
 
