@@ -21,6 +21,12 @@ void motd(){
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
+//Load User Defined Variables
+void loadVariables(){
+
+
+}
+
 void returnStatus(){
     if(retStat != -10){
         exitStatus[statusIndex] = retStat;
@@ -34,51 +40,61 @@ int checkExitStatus(string command, char ** args){
     
     if (command.find(checkStat) == 0) {
         
+        //Last 1st Command
         if(command.compare("$?1") == 0 ){
             int i = statusIndex - 1 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 2nd Command
         if(command.compare("$?2") == 0 ){
             int i = statusIndex - 2 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 3rd Command
         if(command.compare("$?3") == 0 ){
             int i = statusIndex - 3 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 4th Command
         if(command.compare("$?4") == 0 ){
             int i = statusIndex - 4 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 5th Command
         if(command.compare("$?5") == 0 ){
             int i = statusIndex - 5 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 6th Command
         if(command.compare("$?6") == 0 ){
             int i = statusIndex - 6 ;
             cout << exitStatus[i] << endl;
         }
-        
+
+        //Last 7th Command
         if(command.compare("$?7") == 0 ){
             int i = statusIndex - 7 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 8th Command
         if(command.compare("$?8") == 0 ){
             int i = statusIndex - 8 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 9th Command
         if(command.compare("$?9") == 0 ){
             int i = statusIndex - 9 ;
             cout << exitStatus[i] << endl;
         }
         
+        //Last 10th Command
         if(command.compare("$?10") == 0 ){
             int i = statusIndex - 10 ;
             cout << exitStatus[i] << endl;

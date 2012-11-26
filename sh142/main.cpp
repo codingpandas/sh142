@@ -201,6 +201,8 @@ int main(){
 		fprintf(sh142, "DATA=/data/files:/home/usr/myname\n");
 		fclose(sh142);
 	}
+
+    void loadVariables();
     
     while(1){
     	printf("$sh142 ->");
@@ -221,12 +223,10 @@ int main(){
         
         //Variable Unsetter
         variableUnsetter(buffer, args);
-
         
         //Check Environment Variables
         checkenvVar(buffer, args);
 
-        
         //Exit Status
         checkExitStatus(buffer, args);
    	}
