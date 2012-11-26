@@ -12,13 +12,83 @@
 using namespace std;
 
 //Global Return Status Variables
-char exitStatus[10];
+int exitStatus[10];
 int retStat = -10;
 int statusIndex = 0;
 
 void motd(){
 	printf("\tComputer Engineering @ San Jose State University\n");
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
+}
+
+void returnStatus(){
+    if(retStat != -10){
+        exitStatus[statusIndex] = retStat;
+        retStat = -10;
+        statusIndex++;
+    }
+}
+
+int checkExitStatus(string command, char ** args){
+    string checkStat("$?");
+    
+    if (command.find(checkStat) == 0) {
+        
+        if(command.compare("$?1") == 0 ){
+            int i = statusIndex - 1 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?2") == 0 ){
+            int i = statusIndex - 2 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?3") == 0 ){
+            int i = statusIndex - 3 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?4") == 0 ){
+            int i = statusIndex - 4 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?5") == 0 ){
+            int i = statusIndex - 5 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?6") == 0 ){
+            int i = statusIndex - 6 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?7") == 0 ){
+            int i = statusIndex - 7 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?8") == 0 ){
+            int i = statusIndex - 8 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?9") == 0 ){
+            int i = statusIndex - 9 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        if(command.compare("$?10") == 0 ){
+            int i = statusIndex - 10 ;
+            cout << exitStatus[i] << endl;
+        }
+        
+        retStat = 0;
+        return 0;
+    }
+    
+    return 0;
 }
 
 int checkFunctions(string command, char ** args){
@@ -37,12 +107,14 @@ int checkFunctions(string command, char ** args){
    		if(args[1] == NULL){
             system("ls");
             retStat = 0;
+            returnStatus();
         }
         if(args[1] != NULL){
             strcpy(cmdStr, "ls ");
             strcat(cmdStr, args[1]);
             system(cmdStr);
             retStat = 0;
+            returnStatus();
         }
 		return 0;
     }    
@@ -60,10 +132,12 @@ int checkFunctions(string command, char ** args){
 		if(args[1] == NULL){
 			chdir(getenv("HOME"));
             retStat = 0;
+            returnStatus();
 		}else{
 			if(chdir(args[1]) == -1){
 				printf(" %s: No such directory\n", args[1]);
                 retStat = -1;
+                returnStatus();
                 return -1;
 			}
 		}
@@ -199,34 +273,6 @@ int variableUnsetter(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
         retStat = 0;
-    }
-    
-    return 0;
-}
-
-void returnStatus(){
-    if(retStat != -10){
-        //cout << retStat << endl;
-        exitStatus[statusIndex] = retStat;
-        retStat = -10;
-        statusIndex++;
-    }else{
-        retStat = -10;
-    }
-}
-
-int checkExitStatus(string command, char ** args){
-    string checkStat("$?");
-    int i = statusIndex - 1;
-    cout << statusIndex;
-    cout << i;
-    
-    if (command.find(checkStat) == 0) {
-        cout << "spot 0" << exitStatus[0];
-        cout << "spot 1" << exitStatus[1];
-        cout << exitStatus[i] << endl;
-        retStat = 0;
-        return 0;
     }
     
     return 0;

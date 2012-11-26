@@ -209,34 +209,26 @@ int main(){
     	
     	//Checks for Built-in Functions
     	checkFunctions(buffer, args);
-        returnStatus();
         
     	//Change PATH settings
     	checkPATH(buffer, args);
-        returnStatus();
         
     	//Change DATA settings
     	checkDATA(buffer, args);
-        returnStatus();
         
         //Variable Setter
         variableSetter(buffer, args);
-        returnStatus();
         
         //Variable Unsetter
         variableUnsetter(buffer, args);
-        returnStatus();
+
         
         //Check Environment Variables
         checkenvVar(buffer, args);
-        returnStatus();
+
         
         //Exit Status
         checkExitStatus(buffer, args);
-        returnStatus();
-        /*cout << WEXITSTATUS(ret_status)
-        exitStatus[statusIndex] = WEXITSTATUS(ret_status);
-        statusIndex++;*/
    	}
     
 	return 0;
