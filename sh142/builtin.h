@@ -12,15 +12,13 @@
 using namespace std;
 
 //Global Return Status Variables
-int retStat = -1;
+char exitStatus[10];
+int retStat = -10;
+int statusIndex = 0;
 
 void motd(){
 	printf("\tComputer Engineering @ San Jose State University\n");
 	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
-}
-
-void loadDefaults(){
-    
 }
 
 int checkFunctions(string command, char ** args){
@@ -206,8 +204,31 @@ int variableUnsetter(string command, char ** args){
     return 0;
 }
 
-int checkExitStatus(string command, char ** args){
+void returnStatus(){
+    if(retStat != -10){
+        //cout << retStat << endl;
+        exitStatus[statusIndex] = retStat;
+        retStat = -10;
+        statusIndex++;
+    }else{
+        retStat = -10;
+    }
+}
 
+int checkExitStatus(string command, char ** args){
+    string checkStat("$?");
+    int i = statusIndex - 1;
+    cout << statusIndex;
+    cout << i;
+    
+    if (command.find(checkStat) == 0) {
+        cout << "spot 0" << exitStatus[0];
+        cout << "spot 1" << exitStatus[1];
+        cout << exitStatus[i] << endl;
+        retStat = 0;
+        return 0;
+    }
+    
     return 0;
 }
 

@@ -26,22 +26,10 @@ using namespace std;
 
 //Global Variables
 string cmd;
-char exitStatus[10];
-int statusIndex = 0;
 
 //Environmental Variables
 string pathVar;
 string dataVar;
-
-
-void returnStatus(){
-    if(retStat != -10){
-        cout << retStat << endl;
-        exitStatus[statusIndex] = retStat;
-        retStat = -10;
-        statusIndex++;
-    }
-}
 
 //Check Saved Environment Variables
 int checkenvVar(string command, char ** args){
