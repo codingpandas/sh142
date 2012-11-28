@@ -202,6 +202,9 @@ int main(){
         sh142 = fopen(".sh142","w");
         fprintf(sh142, "PATH=/home/usr/myname:/usr/bin\n");
         fprintf(sh142, "DATA=/data/files:/home/usr/myname\n");
+        fprintf(sh142, "CPUMAX=99:200\n");
+        fprintf(sh142, "MEMMAX=50M:360\n");
+        fprintf(sh142, "TIMEMAX=250\n");
         fclose(sh142);
     }
 
