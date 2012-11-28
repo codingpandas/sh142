@@ -4,8 +4,9 @@ CMPE 142 Unix Shell
 
 Known Bugs
 =====
-- Change Directory (cd) is not fully working
 - Error Handling missing for certain commands
+- SSH is buggy
+- SCP is buggy
 
 Done
 =====
@@ -14,6 +15,9 @@ Done
 - User should be able to dynamically set a persistent data file path: DATA=/data/files:/home/usr/myname
 - User should be able to check the exit status of the last few commands by executing $?1, $?2, …
 - Shell must connect to remote shells and be able to support local and remote execution.
+- Change Directory working
+- Remove Files working (Buggy - Doesn't work on Files/Directorys containing spaces)
+- Shell must connect to remote shells and be able to support local and remote execution
 
 Partially Done
 ====
