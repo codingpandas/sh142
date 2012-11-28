@@ -8,6 +8,19 @@
 
 #ifndef sh142_builtin_h
 #define sh142_builtin_h
+#include <inttypes.h>
+#include <iso646.h>
+#include <sys/types.h>
+#include <cstdlib>
+#include <sys/wait.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/wait.h>
+
 
 using namespace std;
 
@@ -17,8 +30,8 @@ int retStat = -10;
 int statusIndex = 0;
 
 void motd(){
-	printf("\tComputer Engineering @ San Jose State University\n");
-	printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
+    printf("\tComputer Engineering @ San Jose State University\n");
+    printf("\tCreated by: Alben Cheung, Timothy Quan, Greg Mathews, David Kwong\n");
 }
 
 //Load User Defined Variables
@@ -37,39 +50,39 @@ void returnStatus(){
 
 int checkExitStatus(string command, char ** args){
     string checkStat("$?");
-    
+
     if (command.find(checkStat) == 0) {
-        
+
         //Last 1st Command
         if(command.compare("$?1") == 0 ){
             int i = statusIndex - 1 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 2nd Command
         if(command.compare("$?2") == 0 ){
             int i = statusIndex - 2 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 3rd Command
         if(command.compare("$?3") == 0 ){
             int i = statusIndex - 3 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 4th Command
         if(command.compare("$?4") == 0 ){
             int i = statusIndex - 4 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 5th Command
         if(command.compare("$?5") == 0 ){
             int i = statusIndex - 5 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 6th Command
         if(command.compare("$?6") == 0 ){
             int i = statusIndex - 6 ;
@@ -81,39 +94,39 @@ int checkExitStatus(string command, char ** args){
             int i = statusIndex - 7 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 8th Command
         if(command.compare("$?8") == 0 ){
             int i = statusIndex - 8 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 9th Command
         if(command.compare("$?9") == 0 ){
             int i = statusIndex - 9 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         //Last 10th Command
         if(command.compare("$?10") == 0 ){
             int i = statusIndex - 10 ;
             cout << exitStatus[i] << endl;
         }
-        
+
         retStat = 0;
         return 0;
     }else{
         //cout << "Please use a valid format: $?<number>" << endl;
     }
-    
+
     return 0;
 }
 
 int checkFunctions(string command, char ** args){
-	
-	//Local Variables
-	char cmdStr[500];
-    
+
+    //Local Variables
+    char cmdStr[500];
+
     //Predefine commands
     string clearCMD("clear");
     string cdCMD("cd");
@@ -123,10 +136,10 @@ int checkFunctions(string command, char ** args){
     string scpCMD("scp");
     string screenCMD("screen");
     string rmCMD("rm");
-    
+
     //List Files in Directory
     if(lsCMD.compare(command) == 0){
-   		if(args[1] == NULL){
+        if(args[1] == NULL){
             system("ls");
             retStat = 0;
             returnStatus();
@@ -138,9 +151,9 @@ int checkFunctions(string command, char ** args){
             retStat = 0;
             returnStatus();
         }
-		return 0;
+        return 0;
     }
-    
+
     //Secure Shell Program
     if(sshCMD.compare(command) == 0){
         if (args[1] != NULL) {
@@ -164,7 +177,7 @@ int checkFunctions(string command, char ** args){
             retStat = 100;
         }
     }
-    
+
     //Secure Copy Program
     if(scpCMD.compare(command) == 0){
         if (args[1] != NULL && args[2] != NULL) {
@@ -192,7 +205,7 @@ int checkFunctions(string command, char ** args){
             retStat = 100;
         }
     }
-    
+
     //Screen Program
     if(screenCMD.compare(command) == 0){
         system("screen");
@@ -200,12 +213,12 @@ int checkFunctions(string command, char ** args){
         return 0;
     }
 
-	//Clear Screen
+    //Clear Screen
     if(clearCMD.compare(command) == 0){
-		system("clear");
+        system("clear");
         retStat = 0;
-		return 0;
-	}
+        return 0;
+    }
 
     //Remove Files
     if(rmCMD.compare(command) == 0){
@@ -232,44 +245,44 @@ int checkFunctions(string command, char ** args){
         }
     }
 
-    
-	//Change Directory
+
+    //Change Directory
     if(cdCMD.compare(command) == 0){
-		if(args[1] == NULL){
-			chdir(getenv("HOME"));
+        if(args[1] == NULL){
+            chdir(getenv("HOME"));
             retStat = 0;
             returnStatus();
-		}else{
-			if(chdir(args[1]) == -1){
-				printf(" %s: No such directory\n", args[1]);
+        }else{
+            if(chdir(args[1]) == -1){
+                printf(" %s: No such directory\n", args[1]);
                 retStat = -1;
                 returnStatus();
                 return -1;
-			}
-		}
-		return 0;
-	}
-    
-	//Exit
-	if(exitCMD.compare(command) == 0){
-		printf("Exiting Shell...\n");
+            }
+        }
+        return 0;
+    }
+
+    //Exit
+    if(exitCMD.compare(command) == 0){
+        printf("Exiting Shell...\n");
         retStat = 0;
-		exit(EXIT_SUCCESS);
-	}
-    
-	return 0;
+        exit(EXIT_SUCCESS);
+    }
+
+    return 0;
 }
 
 int checkPATH(string command, char ** args){
     string pathCMD("PATH=");
-    
+
     if(command.find(pathCMD) == 0){
-		printf("ENVIRONMENT PATH VARIABLE CHANGE DETECTED!\n\n");
-        
+        printf("ENVIRONMENT PATH VARIABLE CHANGE DETECTED!\n\n");
+
         ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
         sh142tmp << command << endl;
-        
+
         ifstream sh142 (".sh142");
         bool first = true;
         string output;
@@ -290,18 +303,18 @@ int checkPATH(string command, char ** args){
         rename(".sh142tmp", ".sh142");
         retStat = 0;
     }
-	return 0;
+    return 0;
 }
 
 int checkDATA(string command, char ** args){
     string pathCMD("DATA=");
-    
+
     if(command.find(pathCMD) == 0){
-		printf("ENVIRONMENT DATA VARIABLE CHANGE DETECTED!\n\n");
-        
+        printf("ENVIRONMENT DATA VARIABLE CHANGE DETECTED!\n\n");
+
         ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
-        
+
         ifstream sh142 (".sh142");
         bool first = true;
         bool second = false;
@@ -330,9 +343,9 @@ int checkDATA(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
         retStat = 0;
-        
+
     }
-	return 0;
+    return 0;
 }
 
 int variableSetter(string command, char ** args){
@@ -350,24 +363,24 @@ int variableSetter(string command, char ** args){
         //}
         retStat = 0;
     }
-    
+
     return 0;
 }
 
 int variableUnsetter(string command, char ** args){
     string varUnset("unsetvar");
-    
+
     if(command.find(varUnset) == 0){
         ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
-        
+
         ifstream sh142 (".sh142");
         string output;
         if(sh142.is_open()){
             while(!sh142.eof()){
                 getline(sh142,output);
                 if(output == args[1]){
-                    
+
                 }
                 if(output != args[1]){
                     sh142tmp << output << endl;
@@ -380,8 +393,79 @@ int variableUnsetter(string command, char ** args){
         rename(".sh142tmp", ".sh142");
         retStat = 0;
     }
-    
+
     return 0;
+}
+
+void background(string command, char ** args, pid_t shellPgid){
+    int i = 0;
+    int ampFlag = 0;
+    int status;
+    int shellTerminal = STDIN_FILENO;
+    int shellIsInteractive = isatty(shellTerminal);
+    char *tmp;
+    intmax_t xmax;
+
+    //Check current Process ID
+    if(command.compare("curp") == 0){
+        cout << getpid() << "\n";
+        retStat = 0;
+    }
+
+    // Switch Processes
+    if(command.compare("switch") == 0){
+        pid_t newForeground, newBackground;
+        newBackground = getpid();
+        cout << "new bakground process: " << newBackground;
+        if(args[1] != NULL){
+            newForeground = (pid_t)strtoimax(args[1], &tmp, 10);
+
+            tcsetpgrp(STDIN_FILENO, newForeground);
+
+            if (kill(newForeground, SIGCONT) < 0)
+                perror("kill (SIGCONT)");
+
+            waitpid(newForeground, &status, 0);
+            tcsetpgrp (STDIN_FILENO, newForeground);
+
+            if (kill(newBackground, SIGCONT) < 0) {
+              perror("kill (SIGCONT)");
+            }
+
+            retStat = 0;
+        }
+    }
+    // Create background Process
+    if (args[1] != NULL && string(args[1]).compare("&") == 0 ){
+        int pid = fork();
+        ampFlag = 1;
+          switch (pid) {
+            case -1:
+              perror("sh142");
+              exit(EXIT_FAILURE);
+              break;
+            case 0: /* for child process */
+              setpgid(pid, pid);
+
+              cout << "PID of Child: " << getpid() << "\n";
+              if (kill(getpid(), SIGCONT) < 0) {
+                perror("kill (SIGCONT)");
+              }
+              break;
+            default: /* for parent process */
+                cout << "Parent Process ID " << getpid() << "\n";
+                tcsetpgrp(STDIN_FILENO, getpid());
+
+                if (kill(getpid(), SIGCONT) < 0)
+                    perror("kill (SIGCONT)");
+
+                waitpid(getpid(), &status, 0);
+                tcsetpgrp (STDIN_FILENO, shellPgid);
+              break;
+          }
+          retStat = 0;
+    }
+
 }
 
 #endif
