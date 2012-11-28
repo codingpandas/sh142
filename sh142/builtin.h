@@ -122,6 +122,7 @@ int checkFunctions(string command, char ** args){
     string sshCMD("ssh");
     string scpCMD("scp");
     string screenCMD("screen");
+    string rmCMD("rm");
     
     //List Files in Directory
     if(lsCMD.compare(command) == 0){
@@ -205,6 +206,32 @@ int checkFunctions(string command, char ** args){
         retStat = 0;
 		return 0;
 	}
+
+    //Remove Files
+    if(rmCMD.compare(command) == 0){
+        if(args[1] == NULL){
+            system("rm");
+            retStat = 0;
+            returnStatus();
+        }
+        if(args[1] != NULL){
+            strcpy(cmdStr, "rm ");
+            strcat(cmdStr, args[1]);
+            system(cmdStr);
+            retStat = 0;
+            returnStatus();
+        }
+        if(args[1] != NULL && args[2] != NULL){
+            strcpy(cmdStr, "rm ");
+            strcat(cmdStr, args[1]);
+            strcat(cmdStr, " ");
+            strcat(cmdStr, args[2]);
+            cout << cmdStr << endl;
+            system(cmdStr);
+            retStat = 0;
+        }
+    }
+
     
 	//Change Directory
     if(cdCMD.compare(command) == 0){
