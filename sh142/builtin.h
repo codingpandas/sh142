@@ -348,6 +348,167 @@ int checkDATA(string command, char ** args){
     return 0;
 }
 
+int checkUTILITY(string command, char ** args){
+    string pathCPU("CPUMAX=");
+    string pathMEM("MEMMAX=");
+    string pathTIME("TIMEMAX=");
+    
+    if(command.find(pathCPU) == 0){
+        printf("CPU UTILITY VARIABLE CHANGE DETECTED!\n\n");
+        
+        ofstream sh142tmp;
+        sh142tmp.open(".sh142tmp");
+
+        ifstream sh142 (".sh142");
+        bool first = true;
+        bool second = false;
+        bool third = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(first){
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                    first = false;
+                    second = true;
+                }
+                if (second) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    second = false;
+                    third = true;
+                }
+                if (third) {
+                    getline(sh142, output);
+                    sh142tmp << command << endl;
+                    third = false;
+                }
+                else{
+                    getline(sh142,output);
+                    sh142tmp << output;
+                }
+            }
+        }
+        sh142tmp.close();
+        sh142.close();
+        remove(".sh142");
+        rename(".sh142tmp", ".sh142");
+        retStat = 0;
+           
+    }
+
+    if(command.find(pathMEM) == 0){
+        printf("MEM UTILITY VARIABLE CHANGE DETECTED!\n\n");
+        
+        ofstream sh142tmp;
+        sh142tmp.open(".sh142tmp");
+
+        ifstream sh142 (".sh142");
+        bool first = true;
+        bool second = false;
+        bool third = false;
+        bool fourth = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(first){
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                    first = false;
+                    second = true;
+                }
+                if (second) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    second = false;
+                    third = true;
+                }
+                if (third) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    third = false;
+                    fourth = true;
+                }
+                if (fourth) {
+                    getline(sh142, output);
+                    sh142tmp << command << endl;
+                    fourth = false;
+                }
+                else{
+                    getline(sh142,output);
+                    sh142tmp << output;
+                }
+            }
+        }
+        sh142tmp.close();
+        sh142.close();
+        remove(".sh142");
+        rename(".sh142tmp", ".sh142");
+        retStat = 0;
+           
+    }
+
+ if(command.find(pathTIME) == 0){
+        printf("TIME UTILITY VARIABLE CHANGE DETECTED!\n\n");
+        
+        ofstream sh142tmp;
+        sh142tmp.open(".sh142tmp");
+
+        ifstream sh142 (".sh142");
+        bool first = true;
+        bool second = false;
+        bool third = false;
+        bool fourth = false;
+        bool fifth = false;
+        string output;
+        if(sh142.is_open()){
+            while(!sh142.eof()){
+                if(first){
+                    getline(sh142,output);
+                    sh142tmp << output << endl;
+                    first = false;
+                    second = true;
+                }
+                if (second) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    second = false;
+                    third = true;
+                }
+                if (third) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    third = false;
+                    fourth = true;
+                }
+                if (fourth) {
+                    getline(sh142, output);
+                    sh142tmp << output << endl;
+                    fourth = false;
+                    fifth = true;
+                }
+                if (fifth){
+                    getline(sh142, output);
+                    sh142tmp << command << endl;
+                    fifth = false;
+                }
+                else{
+                    getline(sh142,output);
+                    sh142tmp << output;
+                }
+            }
+        }
+        sh142tmp.close();
+        sh142.close();
+        remove(".sh142");
+        rename(".sh142tmp", ".sh142");
+        retStat = 0;
+           
+    }
+
+    return 0;
+}
+
 int variableSetter(string command, char ** args){
     string varSet("setvar");
     string equalsVar("=");

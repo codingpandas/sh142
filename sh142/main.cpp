@@ -227,6 +227,9 @@ int main(){
         //Change DATA settings
         checkDATA(buffer, args);
 
+        //Change Utility Settings
+        checkUTILITY(buffer, args);
+
         //Variable Setter
         variableSetter(buffer, args);
 
