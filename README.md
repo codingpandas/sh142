@@ -9,6 +9,7 @@ Known Bugs
 - SCP is buggy
 - User should be able to bring background commands back to foreground (Buggy)
 - User should be able to bring background commands back to foreground (Buggy)
+- User should be able to specify commands to run in the background:Cmd1 & (Buggy)
 
 Done
 =====
@@ -20,19 +21,19 @@ Done
 - Change Directory working
 - Remove Files working (Buggy - Doesn't work on Files/Directorys containing spaces)
 - Shell must connect to remote shells and be able to support local and remote execution
+- User should be able to query background jobs.
+
 
 Partially Done
 ====
 - User should be able to set and unset shell variables and use them in command lines: MYPATH=/mydir Cmd1 $MYPATH/file
 - User should be able to iterate the execution of one or more commands as follows:For (n=0;n < MAX; n++) Com1;Com2;…forend
+- User should be able to run commands on the executable Path (I think this is done -Greg)
 
 To Do List
 ====
-- User should be able to run commands on the executable Path
 - User should be able to run a command with an argument being a data file as follows, and the shell should automatically locate the file in the data path (DATA): mycommand #D:datafileargument
 - User should be able to redirect standard input, output, and error to files using the <, >, and 2> symbols.
 - User should be able to pipeline a number of commands using the following syntax:Cmd1 | cmd2 | cmd3…
 - User should be able to execute commands conditionally: !cmd1 && cmd2 || cmd3…
-- User should be able to specify commands to run in the background:Cmd1 &
-- User should be able to query background jobs.
 - User should be able to specify maximum amount of memory and CPU utilization that a command may use before being terminated by the shell:CPUMAX=99:200 (programs can run at most 200 seconds with CPU utilization of 99% or more) MEMMAX=50M:360 (programs cannot exceede 50Megabytes for more than 360 seconds) TIMEMAX=250 (programs can’t run for more than 250 seconds)
