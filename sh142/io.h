@@ -9,12 +9,21 @@
 #ifndef sh142_io_h
 #define sh142_io_h
 
-void input(){
+//For Input or < 
+void input(string command, char **args){
     
 }
 
-void output(){
+
+// For Output or >
+void output(string command, char **args){
     
+}
+
+// For Error Redirection or 2>
+void errorRedir(string command, char **args){
+
+
 }
 
 #endif
