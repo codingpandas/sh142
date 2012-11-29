@@ -9,14 +9,28 @@
 #ifndef sh142_io_h
 #define sh142_io_h
 
-//For Input or < 
-void input(string command, char **args){
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+
+//For Output or >
+void output(string command, char **args){
+    FILE *read_pipe;
+    char *dest;
+    long bytes_read;
+    const char *cmd;
+    cmd = command.c_str();
+    dest = args[2];
     
+    if (args[1] == ">"){
+    	read_pipe = popen(cmd, "r");
+    	bytes_read = getdelim (dest, 1000, '\0', read_pipe);
+	}
 }
 
 
-// For Output or >
-void output(string command, char **args){
+// For Input or <
+void input(string command, char **args){
     
 }
 
