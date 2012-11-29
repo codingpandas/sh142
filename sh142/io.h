@@ -14,8 +14,7 @@
 using namespace std;
 
 //For Output or >
-void output(string command, char **args){
-    FILE *read_pipe;
+/*    FILE *read_pipe;
     char *dest;
     long bytes_read;
     const char *cmd;
@@ -26,7 +25,7 @@ void output(string command, char **args){
     	read_pipe = popen(cmd, "r");
     	bytes_read = getdelim (dest, 1000, '\0', read_pipe);
 	}
-}
+}*/
 
 
 // For Input or <
