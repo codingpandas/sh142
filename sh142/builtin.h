@@ -20,6 +20,8 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
+#define _POSIX_SOURCE
+#include <termios.h>
 
 
 using namespace std;
@@ -558,7 +560,7 @@ int variableUnsetter(string command, char ** args){
     return 0;
 }
 
-void background(string command, char ** args, pid_t shellPgid){
+void background(string command, char ** args, pid_t shellPgid, int *process, int *numProcess){
     int i = 0;
     int ampFlag = 0;
     int status;
@@ -567,6 +569,14 @@ void background(string command, char ** args, pid_t shellPgid){
     char *tmp;
     intmax_t xmax;
 
+    if(command.compare("lsproc") == 0){
+        int i = 0;
+        cout << "Processes: \n";
+        while(i <= *numProcess){
+            cout << process[i] << "\n";
+            i++;
+        }
+    }
     //Check current Process ID
     if(command.compare("curp") == 0){
         cout << getpid() << "\n";
@@ -577,7 +587,7 @@ void background(string command, char ** args, pid_t shellPgid){
     if(command.compare("switch") == 0){
         pid_t newForeground, newBackground;
         newBackground = getpid();
-        cout << "new bakground process: " << newBackground;
+        cout << "new background process: " << newBackground;
         if(args[1] != NULL){
             newForeground = (pid_t)strtoimax(args[1], &tmp, 10);
 
@@ -587,12 +597,12 @@ void background(string command, char ** args, pid_t shellPgid){
                 perror("kill (SIGCONT)");
 
             waitpid(newForeground, &status, 0);
-            tcsetpgrp (STDIN_FILENO, newForeground);
+
 
             if (kill(newBackground, SIGCONT) < 0) {
               perror("kill (SIGCONT)");
             }
-
+            tcsetpgrp (STDIN_FILENO, shellPgid);
             retStat = 0;
         }
     }
@@ -606,21 +616,29 @@ void background(string command, char ** args, pid_t shellPgid){
               exit(EXIT_FAILURE);
               break;
             case 0: /* for child process */
+
               setpgid(pid, pid);
 
-              cout << "PID of Child: " << getpid() << "\n";
+
               if (kill(getpid(), SIGCONT) < 0) {
                 perror("kill (SIGCONT)");
               }
               break;
             default: /* for parent process */
+                setpgid(getpid(), getpid());
                 cout << "Parent Process ID " << getpid() << "\n";
+                cout << "PID of Child: " << pid << "\n";
+                cout << *numProcess;
+                *numProcess = *numProcess + 1;
+                cout << *numProcess;
+                process[*numProcess] = pid;
+                struct termios shell_tmodes;
                 tcsetpgrp(STDIN_FILENO, getpid());
 
                 if (kill(getpid(), SIGCONT) < 0)
                     perror("kill (SIGCONT)");
 
-                waitpid(getpid(), &status, 0);
+                // waitpid(getpid(), &status, 0);
                 tcsetpgrp (STDIN_FILENO, shellPgid);
               break;
           }

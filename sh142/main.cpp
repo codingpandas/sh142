@@ -15,6 +15,7 @@
 #include <unistd.h>
 #include <algorithm>
 #include <sys/types.h>
+#include <vector>
 #include <regex.h>
 #include "builtin.h"
 #include "parser.h"
@@ -26,6 +27,9 @@ using namespace std;
 
 //Global Variables
 string cmd;
+int process[10];
+int numProcess = 0;
+
 
 //Environmental Variables
 string pathVar;
@@ -154,6 +158,7 @@ int main(){
     // variables for background info
     pid_t shellPgid;
     shellPgid = getpid();
+    process[0] = shellPgid;
 
     //Local Variables
     char buffer[BUFFER_SIZE];
@@ -216,7 +221,7 @@ int main(){
         parse_args(buffer, args, ARR_SIZE, &nargs);
 
         // Checks if function should be run in the background
-        background(buffer, args, shellPgid);
+        background(buffer, args, shellPgid, process, &numProcess);
 
         //Checks for Built-in Functions
         checkFunctions(buffer, args);
