@@ -351,14 +351,11 @@ int checkDATA(string command, char ** args){
 }
 
 int checkUTILITY(string command, char ** args){
-    string pathCPU("CPUMAX=");
-    string pathMEM("MEMMAX=");
-    string pathTIME("TIMEMAX=");
-    
-    if(command.find(pathCPU) == 0){
-        printf("CPU UTILITY VARIABLE CHANGE DETECTED!\n\n");
-        
-        ofstream sh142tmp;
+
+    if(command.find("CPUMAX=") == 0){
+        printf("CPU UTILITY VARIABLE CHANGE DETECTED!\n\n");
+
+        ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
 
         ifstream sh142 (".sh142");
@@ -380,7 +377,7 @@ int checkUTILITY(string command, char ** args){
                     second = false;
                     third = true;
                 }
-                if (third) {
+                if (third){
                     getline(sh142, output);
                     sh142tmp << command << endl;
                     third = false;
@@ -396,13 +393,13 @@ int checkUTILITY(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
         retStat = 0;
-           
-    }
 
-    if(command.find(pathMEM) == 0){
-        printf("MEM UTILITY VARIABLE CHANGE DETECTED!\n\n");
-        
-        ofstream sh142tmp;
+    }
+
+    if(command.find("MEMMAX=") == 0){
+        printf("MEM UTILITY VARIABLE CHANGE DETECTED!\n\n");
+
+        ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
 
         ifstream sh142 (".sh142");
@@ -425,13 +422,13 @@ int checkUTILITY(string command, char ** args){
                     second = false;
                     third = true;
                 }
-                if (third) {
+                if (third){
                     getline(sh142, output);
                     sh142tmp << output << endl;
                     third = false;
                     fourth = true;
                 }
-                if (fourth) {
+                if (fourth){
                     getline(sh142, output);
                     sh142tmp << command << endl;
                     fourth = false;
@@ -447,13 +444,13 @@ int checkUTILITY(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
         retStat = 0;
-           
-    }
 
- if(command.find(pathTIME) == 0){
-        printf("TIME UTILITY VARIABLE CHANGE DETECTED!\n\n");
-        
-        ofstream sh142tmp;
+    }
+
+    if(command.find("TIMEMAX=") == 0){
+        printf("TIME UTILITY VARIABLE CHANGE DETECTED!\n\n");
+
+        ofstream sh142tmp;
         sh142tmp.open(".sh142tmp");
 
         ifstream sh142 (".sh142");
@@ -477,13 +474,13 @@ int checkUTILITY(string command, char ** args){
                     second = false;
                     third = true;
                 }
-                if (third) {
+                if (third){
                     getline(sh142, output);
                     sh142tmp << output << endl;
                     third = false;
                     fourth = true;
                 }
-                if (fourth) {
+                if (fourth){
                     getline(sh142, output);
                     sh142tmp << output << endl;
                     fourth = false;
@@ -505,11 +502,13 @@ int checkUTILITY(string command, char ** args){
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
         retStat = 0;
-           
-    }
 
-    return 0;
+    }
+
+
+    return 0;
 }
+
 
 int variableSetter(string command, char ** args){
     string varSet("setvar");
