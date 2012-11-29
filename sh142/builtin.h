@@ -20,7 +20,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/wait.h>
-#define _POSIX_SOURCE
+//#define _POSIX_SOURCE
 #include <termios.h>
 
 
