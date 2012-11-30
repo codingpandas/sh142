@@ -250,6 +250,9 @@ int main(){
         //Check File to File Input
         fileInput(buffer, args);
 
+        //Dump Command Output
+        dump(buffer, args);
+
         //Exit Status
         checkExitStatus(buffer, args);
     }

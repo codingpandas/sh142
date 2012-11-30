@@ -19,7 +19,7 @@ void dump(string command, char **args){
 
     if(string(args[1]).compare(">") == 0){
         ofstream myfile;
-        myfile.open("name_age.dat",ios::app);
+        myfile.open("dump.txt",ios::app);
         int i = 0;
             while(i < sizeof(args)){
                 myfile << args[i];
