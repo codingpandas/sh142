@@ -21,7 +21,7 @@ using namespace std;
     const char *cmd;
     cmd = command.c_str();
     dest = args[2];
-    
+
     if (args[1] == ">"){
     	read_pipe = popen(cmd, "r");
     	bytes_read = getdelim (dest, 1000, '\0', read_pipe);
@@ -31,16 +31,19 @@ using namespace std;
 //For File to File Output (Copying)
 void fileOutput(string command, char **args){
 
-    if(args[1] = ">"){
+    if(string(args[1]).compare(">") == 0){
         ofstream myfile;
         myfile.open (args[2]);
 
-        ifstream infile (args[0]);
+        ifstream infile;
+        infile.open(args[0]);
+
         string output;
         if(infile.is_open()){
             while(!infile.eof()){
                 getline(infile, output);
                 myfile << output << endl;
+                cout << "output " << output;
             }
         }
         infile.close();
@@ -52,7 +55,7 @@ void fileOutput(string command, char **args){
 //For File to File Input (Inputing)
 void fileInput(string command, char **args){
 
-    if(args[1] = "<"){
+    if(string(args[1]).compare("<") == 0){
         ofstream myfile;
         myfile.open (args[0], ios::app);
 
@@ -73,7 +76,7 @@ void fileInput(string command, char **args){
 
 // For Input or < (for commands/programs)
 void cmdInput(string command, char **args){
-    
+
 }
 
 // For Error Redirection or 2>
