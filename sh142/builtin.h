@@ -392,6 +392,9 @@ int checkUTILITY(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+
+        //Set CPU Max
+
         retStat = 0;
 
     }
@@ -443,6 +446,9 @@ int checkUTILITY(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+
+        //Set MEM Max
+
         retStat = 0;
 
     }
@@ -501,6 +507,9 @@ int checkUTILITY(string command, char ** args){
         sh142.close();
         remove(".sh142");
         rename(".sh142tmp", ".sh142");
+
+        //Set TIME Max
+
         retStat = 0;
 
     }
