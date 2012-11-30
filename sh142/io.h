@@ -49,6 +49,25 @@ void fileOutput(string command, char **args){
         myfile.close();
         retStat = 0;
     }
+
+    if(string(args[1]).compare(">") == 0 && string(args[3]).compare("app") == 0){
+        ofstream myfile;
+        myfile.open (args[2]);
+
+        ifstream infile;
+        infile.open(args[0], ios::app);
+
+        string output;
+        if(infile.is_open()){
+            while(!infile.eof()){
+                getline(infile, output);
+                myfile << output << endl;
+            }
+        }
+        infile.close();
+        myfile.close();
+        retStat = 0;
+    }
 }
 
 //For File to File Input (Inputing)
