@@ -43,7 +43,6 @@ void fileOutput(string command, char **args){
             while(!infile.eof()){
                 getline(infile, output);
                 myfile << output << endl;
-                cout << "output " << output;
             }
         }
         infile.close();
