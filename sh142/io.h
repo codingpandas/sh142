@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <stdio.h>
+#include "builtin.h"
 using namespace std;
 
 //For Output or >
@@ -27,9 +28,51 @@ using namespace std;
 	}
 }*/
 
+//For File to File Output (Copying)
+void fileOutput(string command, char **args){
 
-// For Input or <
-void input(string command, char **args){
+    if(args[1] = ">"){
+        ofstream myfile;
+        myfile.open (args[2]);
+
+        ifstream infile (args[0]);
+        string output;
+        if(infile.is_open()){
+            while(!infile.eof()){
+                getline(infile, output);
+                myfile << output << endl;
+            }
+        }
+        infile.close();
+        myfile.close();
+        retStat = 0;
+    }
+}
+
+//For File to File Input (Inputing)
+void fileInput(string command, char **args){
+
+   /* if(args[1] = "<"){
+        ofstream myfile;
+        myfile.open (args[0]);
+
+        ifstream infile (args[2]);
+        string output;
+        if(infile.is_open()){
+            while(!infile.eof()){
+                getline(infile, output);
+                myfile << output << endl;
+            }
+        }
+        infile.close();
+        myfile.close();
+        retStat = 0;
+    }*/
+
+}
+
+// For Input or < (for commands/programs)
+void cmdInput(string command, char **args){
     
 }
 
