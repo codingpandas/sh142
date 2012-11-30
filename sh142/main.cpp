@@ -251,7 +251,7 @@ int main(){
         fileInput(buffer, args);
 
         //Dump Command Output
-        dump(buffer, args);
+        //dump(buffer, args);
 
         //Exit Status
         checkExitStatus(buffer, args);
