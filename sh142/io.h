@@ -14,24 +14,26 @@
 #include "builtin.h"
 using namespace std;
 
-//For Output or >
-/*    FILE *read_pipe;
-    char *dest;
-    long bytes_read;
-    const char *cmd;
-    cmd = command.c_str();
-    dest = args[2];
 
-    if (args[1] == ">"){
-    	read_pipe = popen(cmd, "r");
-    	bytes_read = getdelim (dest, 1000, '\0', read_pipe);
-	}
-}*/
+void dump(string command, char **args){
+
+    if(string(args[1]).compare(">") == 0){
+        ofstream myfile;
+        myfile.open("name_age.dat",ios::app);
+        int i = 0;
+            while(i < sizeof(args)){
+                myfile << args[i];
+            }
+            myfile << endl;
+        myfile.close();
+        retStat = 0;
+    }
+}
 
 //For File to File Output (Copying)
 void fileOutput(string command, char **args){
 
-    if(string(args[1]).compare(">") == 0){
+    if(args[1] != NULL && string(args[1]).compare(">") == 0){
         ofstream myfile;
         myfile.open (args[2]);
 
@@ -50,7 +52,7 @@ void fileOutput(string command, char **args){
         retStat = 0;
     }
 
-    if(string(args[1]).compare(">") == 0 && string(args[3]).compare("app") == 0){
+    if(args[1] != NULL && string(args[1]).compare(">") == 0 && string(args[3]).compare("app") == 0){
         ofstream myfile;
         myfile.open (args[2]);
 
@@ -73,7 +75,7 @@ void fileOutput(string command, char **args){
 //For File to File Input (Inputing)
 void fileInput(string command, char **args){
 
-    if(string(args[1]).compare("<") == 0){
+    if(args[1] != NULL && string(args[1]).compare("<") == 0){
         ofstream myfile;
         myfile.open (args[0], ios::app);
 
