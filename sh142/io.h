@@ -52,9 +52,9 @@ void fileOutput(string command, char **args){
 //For File to File Input (Inputing)
 void fileInput(string command, char **args){
 
-   /* if(args[1] = "<"){
+    if(args[1] = "<"){
         ofstream myfile;
-        myfile.open (args[0]);
+        myfile.open (args[0], ios::app);
 
         ifstream infile (args[2]);
         string output;
@@ -67,7 +67,7 @@ void fileInput(string command, char **args){
         infile.close();
         myfile.close();
         retStat = 0;
-    }*/
+    }
 
 }
 

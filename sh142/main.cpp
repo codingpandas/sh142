@@ -244,8 +244,11 @@ int main(){
         //Check Environment Variables
         checkenvVar(buffer, args);
 
-        //Check File to File Ouput
+        //Check File to File Ourput
         fileOutput(buffer, args);
+
+        //Check File to File Input
+        fileInput(buffer, args);
 
         //Exit Status
         checkExitStatus(buffer, args);
